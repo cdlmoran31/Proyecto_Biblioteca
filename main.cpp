@@ -2,6 +2,7 @@
 using namespace std;
 
 struct Libro {
+
     int codigo;
     string titulo;
     string autor;
@@ -22,6 +23,7 @@ void push (Libro *&pila, int codigo, string titulo, string autor, string anio, b
     nuevo -> siguiente = pila;
 
     pila = nuevo;
+
 }
 void pop (Libro *&pila) {
     if (pila != NULL) {
@@ -41,6 +43,8 @@ void  mostrar (Libro *&pila) {
         cout << pila->anio;
         cout << pila->disponible;
         cout << endl;
+
+        pila = pila ->siguiente;
     }
 
 }
@@ -58,35 +62,42 @@ int main () {
         cout<<"5. Devolver Libro"<<endl;
         cout<<"6. Reportes"<<endl;
         cout<<"7. Salir"<<endl;
-        cout<<endl;
+        cout<<"Ingrese una Opcion: ";
         cin >> Menu;
         switch (Menu) {
             case 1  : {
                 cout<<"1. Registrar Libro"<<endl;
-                int codigo;
-                string titulo;
-                string autor;
-                string anio;
-                bool disponible = true;
+                    int codigo;
+                    cout<< "Ingrese Codigo: ";
+                    cin >> codigo;
+                    cin.ignore();
+                    string titulo;
+                    cout<< "Ingrese el titulo de Libro:  ";
+                    //cin >> titulo;
+                    getline(cin,titulo);
+                    //cin.ignore();
+                    string autor;
+                    cout<< "Ingrese el autor de Libro:  ";
+                    getline(cin,autor);
+                    //cin >> autor;
+                    //cin.ignore();
+                    string anio;
+                    cout<< "Ingrese el anio de Libro:  ";
+                    getline(cin,anio);
+                    //cin >> anio;
+                    //cin.ignore();
+                    bool disponible = true;
+                    cout << "El Libro esta disponible: "<<disponible<<endl;;
+                    push (pila,codigo,titulo,autor,anio,disponible);
 
-                cout<< "Ingrese el codigo de Libro:  ";
-                cin>>codigo;
-                cout<< "Ingrese el titulo de Libro:  ";
-                cin>>titulo;
-                cout<< "Ingrese el autor de Libro:  ";
-                cin>>autor;
-                cout<< "Ingrese el anio de Libro:  ";
-                cin>>anio;
-                cout<< "Ingrese el disponible de Libro:  ";
-                cout<<disponible<<endl;
-                cout<< "Libro Ingresado correctamente " << endl;
+                break;
 
-                push (pila,codigo,titulo,autor,anio,disponible);
-                    break;
                 }
 
             case 2:
                 cout<<"2. Mostrar Libros"<<endl;
+                mostrar (pila);
+
                 break;
             case 3:
                 cout<<"4. Prestar Libro"<<endl;
@@ -99,6 +110,8 @@ int main () {
                 break;
             case 6:
                 cout<<"7. Salir";
+
+            default: "<3";
                 break;
         }
     }
